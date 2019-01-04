@@ -115,7 +115,7 @@ public class ChunkOnLoad implements Listener{
 		FurnitureLib.getInstance().getFurnitureManager().removeFurniture(player);
 	}
 	
-	@EventHandler
+	@EventHandler (ignoreCancelled = true)
 	public void onClick(final PlayerInteractEvent event){
 		final Player p = event.getPlayer();
 		if(p.getGameMode().equals(GameMode.SPECTATOR)){return;}

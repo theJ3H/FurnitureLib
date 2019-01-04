@@ -277,14 +277,8 @@ public abstract class fEntity {
 		byte b0 = this.watcher.getByte(0);
 		if (b) {
 			b0 = (byte) (b0 | 0x01);
-			if (Bukkit.getPluginManager().isPluginEnabled("LightAPI"))
-				FurnitureLib.getInstance().getLightManager()
-						.addLight(getLocation(), 15);
 		} else {
 			b0 = (byte) (b0 & 0xFFFFFFFE);
-			if (Bukkit.getPluginManager().isPluginEnabled("LightAPI"))
-				FurnitureLib.getInstance().getLightManager()
-						.removeLight(getLocation());
 		}
 		this.watcher.setObject(0, Byte.valueOf(b0));
 		this.fire = b;

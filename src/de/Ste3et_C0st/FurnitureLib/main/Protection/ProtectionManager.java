@@ -162,6 +162,15 @@ public class ProtectionManager {
 			}
 		}
 		
+		if(type!=null&&type.equals(EventType.INTERACT)){
+			if(FurnitureLib.getInstance().haveRegionMemberAccess()){
+				Boolean bool = FurnitureLib.getInstance().getPermManager().isOwner(p, id.getStartLocation());
+				if(bool!=null&&bool){return true;}
+				bool = FurnitureLib.getInstance().getPermManager().canBuild(p, id.getStartLocation());
+				if(bool!=null&&bool){return true;}
+			}
+		}
+		
 		return false;
 	}
 	
