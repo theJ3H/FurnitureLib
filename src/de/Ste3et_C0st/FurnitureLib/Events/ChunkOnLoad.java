@@ -28,6 +28,7 @@ import de.Ste3et_C0st.FurnitureLib.Crafting.Project;
 import de.Ste3et_C0st.FurnitureLib.main.FurnitureLib;
 import de.Ste3et_C0st.FurnitureLib.main.ObjectID;
 import de.Ste3et_C0st.FurnitureLib.main.Type.SQLAction;
+import de.Ste3et_C0st.ProtectionLib.events.RegionClearEvent;
 
 public class ChunkOnLoad implements Listener{
 	
@@ -190,6 +191,24 @@ public class ChunkOnLoad implements Listener{
 						}});
 				}
 			}
+		}
+	}
+	
+	@EventHandler
+	public void onClear(RegionClearEvent e) {
+		List<ObjectID> list = new ArrayList<>();
+		for(ObjectID obj : FurnitureLib.getInstance().getFurnitureManager().getObjectList()){
+			Location l = obj.getStartLocation();
+			
+			if(e.getLoc1().getX() <= l.getX() && e.getLoc2().getX() >= l.getX()) {
+				if(e.getLoc1().getZ() <= l.getZ() && e.getLoc2().getZ() >= l.getZ()) {
+					list.add(obj);
+				}
+			}
+		}
+		
+		for(ObjectID obj : list) {
+			FurnitureLib.getInstance().getFurnitureManager().remove(obj);
 		}
 	}
 	
